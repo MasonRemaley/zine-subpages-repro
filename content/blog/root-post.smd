@@ -1,0 +1,11 @@
+---
+.title = "Root post",
+.date = @date("2024-06-01"),
+.author = "Mason Remaley",
+.layout = "blog/post.shtml",
+.description = "Description",
+--- 
+
+[]($section.id("intro"))
+
+Root post

@@ -1,0 +1,8 @@
+---
+.title = "Home",
+.date = @date("2024-08-30"),
+.author = "Mason Remaley",
+.layout = "index.shtml",
+---
+
+Content

@@ -1,0 +1,22 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+  <title>Games by Mason Blog</title>
+  <link :text="$site.host_url.addPath('blog')"></link>
+  <atom:link href="$site.host_url.addPath('feed.xml')" rel="self" type="application/rss+xml"></atom:link>
+  <description>The Games by Mason Blog</description>
+  <generator>Zine -- https://zine-ssg.io</generator>
+  <language>en-us</language>
+  <lastBuildDate :text="$build.generated.formatHTTP()"></lastBuildDate>
+  <ctx :loop="$page.subpages()">
+    <item>
+     <pubDate 
+      :text="$loop.it.date.formatHTTP()"
+     ></pubDate>
+     <link :text="$site.host_url.addPath($loop.it.link())"></link>
+     <guid :text="$site.host_url.addPath($loop.it.link())"></guid>
+     <title :text="$loop.it.title"></title>
+     <description :text="$loop.it.content()"></description>
+    </item>
+  </ctx>
+ </channel>
+</rss>

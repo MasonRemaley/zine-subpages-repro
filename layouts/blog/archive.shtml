@@ -1,0 +1,116 @@
+<extend template="base.shtml">
+<title id="title" :text="$page.title"></title>
+<head id="head">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.location.hash == '#' || window.location.hash == "") return;
+      const tag = window.location.hash.substring(1);
+      document.querySelector("#archive").textContent = "Posts tagged with '" + tag + "'...";
+      document.querySelector("#about").style.display = 'none';
+      for (const tags of document.querySelectorAll(".tags")) {
+        const post = tags.parentElement;
+        const hasTag = post.querySelector("." + tag);
+        if (!hasTag) post.style.display = 'none';
+      }
+    });
+  </script>
+</head>
+<div id="content">
+  <style>
+        h1 {
+          margin: 0;
+         }
+         h3 {
+           margin-bottom: 0;
+         }
+
+        #width50p {
+          width: 50%;
+          display: block;
+          margin: auto;
+        }
+
+        #page {
+          h1, h2, h3 {
+            text-align: left;
+            margin: 0em;
+          }
+          
+          h1 {
+            font-size: 1.5rem;
+            border-bottom: 1px dashed #aaa;
+
+            a {
+                color: white;
+              text-decoration: none;
+            }
+
+            a:hover::after {
+                content: ' #';
+              color: white;
+            }
+          }
+
+          h2 {
+            font-size: 1.5rem;
+          }
+
+          h4 {
+            font-size: 1rem;
+          }
+        }
+
+
+
+
+      table {
+        font-size: 0.9em;
+      }
+      table th {
+        font-size: 1em;
+      }
+      table td {
+        white-space: nowrap;
+      }
+
+      #page>div {
+        padding: 1em;
+      }
+
+      div[id]:target {
+        animation: pulse-div 2s ease-in-out 1 forwards;
+      }
+
+      @keyframes pulse-div {
+        0%,
+        100% {
+          background-color: #222;
+        }
+
+        50% {
+          background-color: #111;
+        }
+      }
+  </style>
+  <h3 class="overtitle centered">Games by Mason</h3>
+  <h1 class="title" :text="$page.title"></h1>
+  <div id="page">
+    <ctx :loop="$page.contentSections()">
+      <ctx :html="$loop.it.html()" href="$loop.it.id.prefix('#')"></ctx>
+    </ctx>
+    <div>
+      <h2 id="archive">Archive</h2>
+      <ul :loop="$site.page('blog').subpages()">
+        <ctx :if="$loop.it.layout.eql('blog/post.shtml')">
+          <li class="post">
+            <span style="display:none;" class="tags" :loop="$loop.it.tags">
+              <span class="$loop.it"></span>
+            </span>
+            <a href="$loop.it.link()" :text="$loop.it.title"></a>
+          </li>
+        </ctx>
+      </ul>
+    </div>
+  </div>
+
+</div>

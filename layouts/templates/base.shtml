@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <meta charset="UTF-8">
+    <meta name="description" content="$page.description">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title id="title">
+      <super>
+      - Games by Mason
+    </title>
+
+    <meta property="og:title" content="$page.title">
+    <meta property="og:site_name" content="Games by Mason">
+    <meta property="og:description" content="$page.description">
+    <ctx :if="$page.custom.get?('image')">
+      <meta property="og:image" content="$site.host_url.addPath($page.link().suffix($page.asset($if).link()))">
+    </ctx>
+    <meta property="og:url" content="$site.host_url.addPath($page.link())">
+    <ctx :if="$page.layout.eql('blog/post.shtml').not()">
+      <meta property="og:type" content="website">
+    </ctx>
+    <ctx :if="$page.layout.eql('blog/post.shtml')">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="$page.date.format('2006-01-02')">
+      <meta property="author:first_name" content="$page.author.splitN(' ', 0)">
+      <meta property="author:last_name" content="$page.author.splitN(' ', 1)">
+      <meta property="author:username" content="$page.author">
+      <ctx :loop="$page.tags">
+        <meta property="article:tag" content="$loop.it">
+      </ctx>
+    </ctx>
+
+
+    <meta name="twitter:site" content="@anthropicst">
+    <meta name="twitter:creator" content="@anthropicst">
+    <meta name="twitter:author" content="@anthropicst">
+    <meta name="twitter:description" content="$page.description">
+    <meta name="twitter:title" content="$page.title.suffix(' | Games by Mason')">
+    <ctx :if="$page.custom.get?('image')">
+      <meta name="twitter:image" content="$site.host_url.addPath($page.link().suffix($page.asset($if).link()))">
+    </ctx>
+
+    <link rel="stylesheet" type="text/css" href="$site.asset('fonts.css').link()">
+    <link rel="stylesheet" type="text/css" href="$site.asset('fira_code.css').link()">
+    <link rel="stylesheet" type="text/css" href="$site.asset('style.css').link()">
+    <link rel="stylesheet" type="text/css" href="$site.asset('highlight.css').link()">
+    <link rel="icon" type="image/x-icon" href="$site.asset('favicon.ico').link()">
+
+    <!-- <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+          "@type": "Person",
+          "name":"Mason Remaley"
+        },
+        "dateModified": "2024-06-01T00:00:00-07:00",
+        "datePublished": "2024-06-01T00:00:00-07:00",
+        "description": "Highlights from my AMA about the Way of Rhea launch.",
+        "headline": "Highlights from “I spent 6 years developing a game in Rust and it just shipped, AMA”",
+        "image": "https://www.gamesbymason.com/assets/posts/2024-06-01-wor-ama/magfest-2020-booth.jpg",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://www.gamesbymason.com/2024/06/01/wor-ama/"
+        },
+        "publisher":{
+          "@type": "Organization",
+          "logo":{
+            "@type": "ImageObject",
+            "url": "https://www.gamesbymason.com/assets/logo.png"
+          },
+          "name":"Mason Remaley"
+        },
+        "url": "https://www.gamesbymason.com/2024/06/01/wor-ama/"
+      }
+    </script> -->
+    <super>
+  </head>
+  <body>
+    <nav id="menu" class="centered">
+      <img src="$site.asset('logo.png').link()" class="logo">
+      <a href="/">Home</a>
+      •
+      <a href="$site.page('blog').link()">Blog</a>
+    </nav>
+    <div id="content">
+      <super>
+    </div>
+  </body>
+</html>
